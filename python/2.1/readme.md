@@ -6,3 +6,6 @@ points for using SQLite or PostgreSQL. URLS need to be in REST API
 convention.
 
 # Setup
+
+sudo docker build -t python_api:latest .
+sudo docker run -d --name python_api -p 5001:5000 python_api:latest

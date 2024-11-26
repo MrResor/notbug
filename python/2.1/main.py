@@ -83,4 +83,4 @@ api.add_resource(task, '/tasks/<task_id>')
 
 if __name__ == '__main__':
     # as this is a recruitement task i leave debug for visibility
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
