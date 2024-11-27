@@ -1,7 +1,7 @@
 from os import remove
 import sqlite3
 
-class database ():
+class Database ():
     """ Simple class holding sqlite3 database connection.\n
 
         Arguments:\n
@@ -114,4 +114,4 @@ class database ():
         else:
             return -1
 
-db = database()
+db = Database()

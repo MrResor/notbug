@@ -25,14 +25,14 @@ parser_update.add_argument('done', required=False, choices=(0, 1), type=int, hel
 def unknown_id(id):
     abort(404, message=f'No task with id {id}.')
 
-class mock(Resource):
+class Mock(Resource):
     def get(self):
         """ Resets database to the initial state.
         """
         db.mock()
         return {'status': 'done'}
 
-class show_all(Resource):
+class Show_all(Resource):
     def get(self):
         """ Returns all tasks.
         """
@@ -46,7 +46,7 @@ class show_all(Resource):
         id = db.add(args.task, args.done)
         return ({'message': f'Task added with id {id}.'}, 201)
 
-class task(Resource):
+class Task(Resource):
     def delete(self, task_id):
         """ Delete single task.
         """
@@ -77,9 +77,9 @@ class task(Resource):
         else:
             return {'message': f'Task {task_id} updated.'}
 
-api.add_resource(mock, '/mock')
-api.add_resource(show_all, '/tasks')
-api.add_resource(task, '/tasks/<task_id>')
+api.add_resource(Mock, '/mock')
+api.add_resource(Show_all, '/tasks')
+api.add_resource(Task, '/tasks/<task_id>')
 
 if __name__ == '__main__':
     # as this is a recruitement task i leave debug for visibility
