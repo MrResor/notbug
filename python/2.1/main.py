@@ -32,7 +32,7 @@ class Mock(Resource):
         db.mock()
         return {'status': 'done'}
 
-class Show_all(Resource):
+class ShowAall(Resource):
     def get(self):
         """ Returns all tasks.
         """
