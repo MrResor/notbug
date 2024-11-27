@@ -20,10 +20,34 @@ it will reset app to the initial state.
 
 # Description
 
+Database holds information in the following format [task id, task name / message, status of the task]. Task id is an integer does not have to be revealed to the user but it is a primary key of the table. Message is a text that is asociated with a task. Lastly, status is an integer of values either 0 or 1, where 0 indcicates that the task has not been done yet and 1 a finished task.
+
 Total of 3 endpoints are available in the app
 
-* /mock - resets database to the initial state
+* /mock
 
-* /tasks - GET request returns a list of all tasks, POST requests pushes a new task to the list, payload with "task" and "done" are needed
+    GET - resets database to the initial state.
 
-* /tasks/<task_id> - GET request returns task with given task_id, DELETE will remove that task, and PUT will update it.
+* /tasks
+
+    GET - returns a list of all tasks.
+    
+    POST - pushes a new task to the list, payload with "task" and "done" are needed. Examplary json file below.
+   
+    ```
+    {
+        "task": "Examplary task",
+        "done": 0
+    }
+    ```
+
+* /tasks/<task_id>
+
+    NOTE. If there is no task with task_id in the database, any request will return a 404 status code
+
+    GET - returns task with given task_id.
+    
+    DELETE - remove task with task id equal to the given one.
+    
+    PUT - update task with the the given task_id. Payload is similar to the /task POST request, but only
+    one of the keys is required. In case non of them are given, request will return a 204 status code.
