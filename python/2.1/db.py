@@ -2,6 +2,22 @@ from os import remove
 import sqlite3
 
 class database ():
+    """ Simple class holding sqlite3 database connection.\n
+
+        Arguments:\n
+        db_name - Holds database filename.\n
+        con     - Connection to the database.\n
+        cur     - Holds cursor used to execute the commands.\n
+
+        Methods:\n
+        __setup - Creates connection and cursor for the class.\n
+        add     - Adds new task to the database.\n
+        delete  - Deletes a task from the database.\n
+        mock    - Restores the database to it's initial state.\n
+        show    - Shows either one or all tasks, depends on the value of parameter it receives.\n
+        update  - Updates a task in the database.s
+    """
+    
     def __init__(self):
         self.db_name = 'todo.db'
         self.__setup()
@@ -74,10 +90,15 @@ class database ():
         return res
 
     def update(self, id: int, data: dict):
+        """ Tries to update the task in the database. If the "task" and "done" keys in the dict are both
+            equal to None, it means no data to update was passed. 
+        """
+        # if both are None, it means that no needed data was sent in request
         if data.task is None and data.done is None:
             return -2
         query = 'UPDATE tasks SET'
         args = ()
+        # if parameter was passed add it to the query and update args
         if data.task is not None:
             query += ' msg = ?'
             args = (*args, data.task)
