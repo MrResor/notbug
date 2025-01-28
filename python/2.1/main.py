@@ -78,7 +78,7 @@ class Task(Resource):
             return {'message': f'Task {task_id} updated.'}
 
 api.add_resource(Mock, '/mock')
-api.add_resource(Show_all, '/tasks')
+api.add_resource(ShowAall, '/tasks')
 api.add_resource(Task, '/tasks/<task_id>')
 
 if __name__ == '__main__':
